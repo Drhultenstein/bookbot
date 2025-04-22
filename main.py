@@ -1,13 +1,14 @@
+import os
+
 def get_book_text(book_path: str) -> str:
-    with open(book_path) as f:
+    with open(book_path, encoding="utf-8") as f:
         return f.read()
     
-def count_words(text: str) -> int:
-    words = text.split()
-    return len(words)
+from stats import count_words
     
 def main():
-    book_path = "books/frankenstein.txt"
+    script_dir = os.path.dirname(__file__)  # folder where main.py is
+    book_path = os.path.join(script_dir, "books", "frankenstein.txt")
     book_text = get_book_text(book_path)
     print(f"{count_words(book_text)} words found in the document")
 
